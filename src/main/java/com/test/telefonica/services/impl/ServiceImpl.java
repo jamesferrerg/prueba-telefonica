@@ -1,10 +1,12 @@
 package com.test.telefonica.services.impl;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.test.telefonica.entity.Variable;
 import com.test.telefonica.services.IEjercicioService;
 
 @Service
@@ -43,6 +45,27 @@ public class ServiceImpl implements IEjercicioService {
 			return "No existe solucion";
 		}
 
+	}
+
+	@Override
+	public String fibonacci(Integer tamano) {
+
+		Integer f1 = 0, f2 = 1;
+
+		List<Integer> listaFibonacci = new ArrayList<Integer>();
+
+		for (int i = 1; i <= tamano; ++i) {
+			listaFibonacci.add(f1);
+			Integer f3 = f1 + f2;
+			f1 = f2;
+			f2 = f3;
+		}
+
+		List<String> nuevaLista = listaFibonacci.stream().map(String::valueOf).collect(Collectors.toList());
+
+		String resp = nuevaLista.toString();
+
+		return resp;
 	}
 
 }
